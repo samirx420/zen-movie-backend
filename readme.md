@@ -9,22 +9,53 @@ bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTI5MzYxNzksImRhdGEiOnsi
 $2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG
 ```
 
-
-### Info
-this project is hosted on https://pz-job.herokuapp.com. To view swagger visit http://pz-job.herokuapp.com/api-docs.
-
-### Getting started
+## Getting started
  1. Migrate Database
-```
+```bash
 npx knex migrate:latest
 ```
 
 2. build project
-```
+```bash
 npx tsc
 ```
 
 3. start project
-```
+```bash
 npm start
+```
+
+
+## Development process
+ 1. Migrate Database if not exist (pzt.pz)
+```bash
+npx knex migrate:latest
+```
+
+2. build project on watch mode
+```bash
+npx tsc -w
+```
+
+3. start project
+```bash
+nodemon dist/web/index.js
+```
+
+
+## Testing process
+ 1. Run testing command
+```bash
+$ npm run test-dev
+$ yarn run test-dev
+```
+
+2. build project on watch mode
+```
+npx tsc -w
+```
+
+3. start project
+```
+nodemon dist/web/index.js
 ```

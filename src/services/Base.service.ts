@@ -2,7 +2,7 @@ import { NextFunction, Response, Request } from "express";
 
 class BaseService {
 
-    public _notmaliza_page(page, limit) {
+    public _normaliza_page(page, limit) {
         let _page = parseInt(page as string, 10);
 
         if (isNaN(_page) || _page < 1) {

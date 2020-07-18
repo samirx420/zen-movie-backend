@@ -20,8 +20,9 @@ const connection = require('../Objection');
 // import { UserObject } from './validators/User.validator';
 
 // // Controllers
-import userController   from '../controllers/User.controller';
-import movieController  from '../controllers/Movie.controller';
+import userController       from '../controllers/User.controller';
+import movieController      from '../controllers/Movie.controller';
+import watchlistController  from '../controllers/Watchlist.controller';
 
 
 
@@ -131,8 +132,9 @@ class App {
         this.express.get('/api-docs', swaggerUi.serve);
 
         // this.express.use('/api/v1/user'     , customValidator.validate(UserObject), userController);               
-        this.express.use('/api/v1/users'    , userController);
-        this.express.use('/api/v1/movies'   , movieController);
+        this.express.use('/api/v1/users'        , userController);
+        this.express.use('/api/v1/movies'       , movieController);
+        this.express.use('/api/v1/watchlists'   , watchlistController);
 
 
         // /**
