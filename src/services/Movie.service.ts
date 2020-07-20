@@ -6,7 +6,7 @@ export class MovieService {
 
     constructor() { }
 
-    public async get_all(user:any, page: string, size: string) {
+    public async get_all(user:any | undefined, page: string, size: string) {
         let { offset, limit } = BaseService._normaliza_page(page, size);
 
         let query = Movie

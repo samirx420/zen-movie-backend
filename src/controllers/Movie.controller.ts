@@ -21,7 +21,7 @@ export class MovieController {
 
     public async get_all(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
-            let user_decoded: User = req['user'].data;
+            let user_decoded: User = req['user']?.data;
             let response = await MovieService.get_all(user_decoded, req.query.page as string, req.query.limit as string);
 
             return res.status(200).json(response);
