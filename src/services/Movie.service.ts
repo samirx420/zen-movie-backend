@@ -1,12 +1,47 @@
 import BaseService from './Base.service';
 import Movie from '../model/Movie';
+import { raw } from 'objection';
 
 export class MovieService {
 
     constructor() { }
 
-    public async get_all(page: string, limit: string) {
-        return BaseService._get_all_paged({ model: Movie, page: page, limit: limit });
+    public async get_all(user:any, page: string, size: string) {
+        let { offset, limit } = BaseService._normaliza_page(page, size);
+
+        let query = Movie
+                .query();
+
+        if(user){
+            query
+            .select('movies.*','Watchlists.id as is_in_watchlist')
+            .leftJoin('Watchlists', (join) => {
+                join
+                .on('Watchlists.movie_id', '=', 'movies.id')
+                .andOn(raw('Watchlists.created_by = ?', user.id));
+            });
+        }
+
+        let movies = await query
+            .where({
+                'movies.is_deleted': false
+            })
+            .page(offset, limit);
+
+        let moves_mapped = movies.results.map(m => ({...m, is_in_watchlist: m.is_in_watchlist? true: false}))
+
+
+        let response = {
+            data: moves_mapped,
+            paged: {
+                page: page,
+                pageSize: size,
+                rowCount: movies.total,
+                pageCount: Math.ceil(movies.total / parseInt(size))
+            }
+        };
+
+        return response;
     }
 
     public async get_by_id(id: string) {

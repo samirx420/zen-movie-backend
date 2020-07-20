@@ -21,7 +21,8 @@ export class MovieController {
 
     public async get_all(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
-            let response = await MovieService.get_all(req.query.page as string, req.query.limit as string);
+            let user_decoded: User = req['user'].data;
+            let response = await MovieService.get_all(user_decoded, req.query.page as string, req.query.limit as string);
 
             return res.status(200).json(response);
 
@@ -53,8 +54,8 @@ export class MovieController {
 
             return res.status(201).json(response);
         } catch (error) {
-            console.log(error);
-            next({ status: 400, message: error });
+            console.log(error.message);
+            next({ status: 400, message: error.message });
         }
     }
 
