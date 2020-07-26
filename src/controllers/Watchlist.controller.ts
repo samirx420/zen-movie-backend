@@ -22,7 +22,7 @@ export class WatchlistController {
     public async get_all(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             let user_decoded: User = req['user'].data;
-            let response = await WatchlistService.get_my_watchlist(user_decoded.id, req.query.page as string, req.query.limit as string);
+            let response = await WatchlistService.get_my_watchlist(user_decoded.id, +req.query.page, +req.query.limit);
 
             return res.status(200).json(response);
 

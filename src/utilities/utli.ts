@@ -71,6 +71,21 @@ export class Utilities {
         _next();
     }
 
+    public not_found(req: Request, res: Response, next: NextFunction) {        
+        res.status(404).json({
+            error: "not found"
+        })
+    }
+
+    public global_system_error_handler(error: {status:number,message:string}, req: Request, res: Response, next: NextFunction) {
+        res.status(error.status);        
+        res.json({
+            error: {
+                message: error.message || "Oops! Something went wrong."
+            }
+        });
+    }
+
 }
 
 export default new Utilities();

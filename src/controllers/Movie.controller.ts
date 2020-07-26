@@ -9,6 +9,7 @@ import MovieService from "../services/Movie.service";
 
 // UTILITIES
 import Utilities from "../utilities/utli";
+import { upload } from "../utilities/fileupload";
 
 export class MovieController {
 
@@ -22,7 +23,7 @@ export class MovieController {
     public async get_all(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             let user_decoded: User = req['user']?.data;
-            let response = await MovieService.get_all(user_decoded, req.query.page as string, req.query.limit as string);
+            let response = await MovieService.get_all(user_decoded, +req.query.page, +req.query.limit, req.query.search as string);
 
             return res.status(200).json(response);
 
@@ -36,7 +37,8 @@ export class MovieController {
     public async get_by_id(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             let id       = req.params.id;
-            let response = await MovieService.get_by_id(id);
+            let user_decoded: User = req['user']?.data;
+            let response = await MovieService.get_by_id(user_decoded, id);
 
             return res.status(200).json(response);
         } catch (error) {
@@ -49,7 +51,8 @@ export class MovieController {
         try {
             let payload            = req.body;
             let user_decoded: User = req['user'].data;
-                payload            = {...payload, created_by:user_decoded.id};
+            let poster_path        = (req.files['poster'] != undefined) ? req.files['poster'][0].filename : '' as string;
+                payload            = {...payload, created_by:user_decoded.id, poster_path: poster_path};
             let response           = await MovieService.create(payload);
 
             return res.status(201).json(response);
@@ -61,10 +64,11 @@ export class MovieController {
 
     public async update(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
-            let id              = req.params.id;
-            let payload: Movie = req.body;
-
-            let response = await MovieService.update(id, payload);
+            let id          = req.params.id;
+            let payload     = req.body;
+            let poster_path = (req.files['poster'] != undefined) ? req.files['poster'][0].filename : '' as string;
+                payload     = {...payload, poster_path: poster_path};
+            let response    = await MovieService.update(id, payload);
 
             return res.status(204).json(response);
         } catch (error) {
@@ -88,8 +92,8 @@ export class MovieController {
     public initRoutes() {
         this.router.get('/'         , Utilities.check_auth_allowable, this.get_all);
         this.router.get('/:id'      , Utilities.check_auth_allowable, this.get_by_id);
-        this.router.post('/'        , Utilities.check_auth, this.create);
-        this.router.put('/:id'      , Utilities.check_auth, this.update);
+        this.router.post('/'        , upload.fields([{ name: 'poster', maxCount: 1 }]), Utilities.check_auth, this.create);
+        this.router.put('/:id'      , upload.fields([{ name: 'poster', maxCount: 1 }]), Utilities.check_auth, this.update);
         this.router.delete('/:id'   , Utilities.check_auth,this.delete);
     }
 

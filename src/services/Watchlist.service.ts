@@ -6,7 +6,7 @@ export class WatchlistService {
 
     constructor() { }
 
-    public async get_my_watchlist(userId: number, page: string, size: string) {
+    public async get_my_watchlist(userId: number, page: number, size: number) {
 
         let { offset, limit } = BaseService._normaliza_page(page, size);
         let query = Watchlist
@@ -30,7 +30,7 @@ export class WatchlistService {
                 page: page,
                 pageSize: limit,
                 rowCount: watchlists.total,
-                pageCount: Math.ceil(watchlists.total / parseInt(size))
+                pageCount: Math.ceil(watchlists.total / size)
             }
         };
 
@@ -41,21 +41,21 @@ export class WatchlistService {
     public async create(payload: Watchlist) {
 
         let movie_found = await Watchlist
-        .query()
-        .first()
-        .where({
-            movie_id: payload.movie_id,
-        });
+            .query()
+            .first()
+            .where({
+                movie_id: payload.movie_id,
+            });
 
-        if(movie_found){
-            if(movie_found.is_deleted){
+        if (movie_found) {
+            if (movie_found.is_deleted) {
                 await Watchlist
-                .query()
-                .patch({
-                    is_deleted: false
-                })
+                    .query()
+                    .patch({
+                        is_deleted: false
+                    })
 
-                return {...movie_found, is_deleted: false};
+                return { ...movie_found, is_deleted: false };
             }
             throw ({
                 message: 'already added to watchlist'
@@ -65,27 +65,33 @@ export class WatchlistService {
     }
 
     public async delete(movie_id: string) {
-        let result = await Watchlist
+        let resultDelete = await Watchlist
             .query()
-            .first()
-            .where({
-                movie_id: movie_id
-            }).debug(true);
+            .delete()
+            .where({ movie_id: movie_id }).debug(true);
 
-        if (result) {
-            let resultDelete = await Watchlist
-                .query()
-                .patch({
-                    is_deleted: true
-                })
-                .where({ id: result.id }).debug(true);
+        return { message: 'delete success' };
+        // let result = await Watchlist
+        //     .query()
+        //     .first()
+        //     .where({
+        //         movie_id: movie_id
+        //     }).debug(true);
 
-            return { message: 'delete success' };
-        }
+        // if (result) {
+        //     let resultDelete = await Watchlist
+        //         .query()
+        //         .patch({
+        //             is_deleted: true
+        //         })
+        //         .where({ movie_id: movie_id }).debug(true);
 
-        throw ({
-            message: 'not found with id ' + movie_id
-        })
+        //     return { message: 'delete success' };
+        // }
+
+        // throw ({
+        //     message: 'not found with id ' + movie_id
+        // })
 
 
     }

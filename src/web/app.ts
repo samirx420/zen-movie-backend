@@ -12,6 +12,8 @@ import * as esm         from 'express-status-monitor';
 
 const connection = require('../Objection');
 
+import Utilities from "./../utilities/utli";
+
 // import { HttpFlush }    from './middleware/HttpFlush';
 
 // import customValidator  from './middleware/Validator.middleware';
@@ -106,8 +108,7 @@ class App {
      */
     private routes(): void {
         let router = express.Router();
-        
-        this.express.get('*.*', express.static(path.join(__dirname, '../uploads'),{ maxAge: 31557600000 }));
+        this.express.get('*.*', express.static(path.join(__dirname, '../../uploads'),{ maxAge: 31557600000 }));
         this.express.get('*.*', express.static(path.join(__dirname, '../../client-web-dist')));
            
         this.express.get('/',  (req, res) => {
@@ -144,8 +145,8 @@ class App {
         //     res.render(path.join('index.html'), { req });
         // });
         
-        // this.express.use(this.httpFlush.notFound);
-        // this.express.use(this.httpFlush.globalSystemErrorHandler);
+        this.express.use(Utilities.not_found);
+        this.express.use(Utilities.global_system_error_handler);
 
     }
 

@@ -2,27 +2,24 @@ import { NextFunction, Response, Request } from "express";
 
 class BaseService {
 
-    public _normaliza_page(page, limit) {
-        let _page = parseInt(page as string, 10);
+    public _normaliza_page(page:number, limit:number) {
 
-        if (isNaN(_page) || _page < 1) {
-            _page = 1;
+        if (isNaN(page) || page < 1) {
+            page = 1;
         }
 
-        let _limit = parseInt(limit as string, 10);
-
-        if (isNaN(_limit)) {
-            _limit = 10;
-        } else if (_limit > 50) {
-            _limit = 50;
-        } else if (_limit < 1) {
-            _limit = 1;
+        if (isNaN(limit)) {
+            limit = 10;
+        } else if (limit > 50) {
+            limit = 50;
+        } else if (limit < 1) {
+            limit = 1;
         }
 
-        let offset = _page - 1;
+        let offset = page - 1;
 
         return {
-            limit: _limit,
+            limit: limit,
             offset: offset,
         }
 
