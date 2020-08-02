@@ -38,14 +38,11 @@ describe('Watch list', () => {
     }).timeout(5000);
 
     it('it should POST a movie to watch list', async () => {
-        let data = {
-            title: 'test_title',
-            description: 'test_desriptin',
-        }
         let movie = await chai.request(app)
             .post('/api/v1/movies')
             .set('Authorization', 'Bearer ' + auth.jwt)
-            .send(data);
+            .field('title', 'test_title')
+            .field('description', 'test_desriptin');
 
         let watch_list_data = {
             movie_id: movie.body.id,

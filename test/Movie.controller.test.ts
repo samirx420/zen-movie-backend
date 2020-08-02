@@ -38,54 +38,42 @@ describe('Movie', () => {
     }).timeout(5000);
 
     it('it should POST new movie', async () => {
-        let data = {
-            title: 'test_title',
-            description: 'test_desriptin',
-        }
+
         let movie = await chai.request(app)
             .post('/api/v1/movies')
             .set('Authorization', 'Bearer ' + auth.jwt)
-            .send(data);
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
+            .field('title', 'test_title')
+            .field('description', 'test_description');
 
         expect(movie.status).to.equal(201);
         expect(movie).not.to.be.empty;
     }).timeout(5000);
 
     it('it should PUT exiting movie', async () => {
-        let movie_date = {
-            title: 'title to update',
-            description: 'desscription to update',
-        }
-
         let movie_create = await chai.request(app)
             .post('/api/v1/movies')
             .set('Authorization', 'Bearer ' + auth.jwt)
-            .send(movie_date);
-
-        let movie_data_to_update = {
-            title: 'title is updated',
-            description: 'desscription is updated',
-        }
+            .field('title', 'test_title')
+            .field('description', 'test_description');
 
         let movie_update = await chai.request(app)
             .put('/api/v1/movies/' + movie_create.body.id)
             .set('Authorization', 'Bearer ' + auth.jwt)
-            .send(movie_data_to_update);
+            .field('title', 'title is updated')
+            .field('description', 'desscription is updated');
 
 
         expect(movie_update.status).to.equal(204);
     }).timeout(5000);
-    
+
     it('it should GET exiting movie detail', async () => {
-        let movie_date = {
-            title: 'title for detail',
-            description: 'desscription for detail',
-        }
 
         let movie_create = await chai.request(app)
             .post('/api/v1/movies')
             .set('Authorization', 'Bearer ' + auth.jwt)
-            .send(movie_date);
+            .field('title', 'title for detail')
+            .field('description', 'desscription for detail');
 
         let movie_detail = await chai.request(app)
             .get('/api/v1/movies/' + movie_create.body.id)
@@ -94,17 +82,14 @@ describe('Movie', () => {
 
         expect(movie_detail.status).to.equal(200);
     }).timeout(5000);
-    
+
     it('it should DELETE an exiting movie', async () => {
-        let movie_date = {
-            title: 'title for detail',
-            description: 'desscription for detail',
-        }
 
         let movie_create = await chai.request(app)
             .post('/api/v1/movies')
             .set('Authorization', 'Bearer ' + auth.jwt)
-            .send(movie_date);
+            .field('title', 'title for detail')
+            .field('description', 'desscription for detail');
 
         let movie_deleted = await chai.request(app)
             .delete('/api/v1/movies/' + movie_create.body.id)
