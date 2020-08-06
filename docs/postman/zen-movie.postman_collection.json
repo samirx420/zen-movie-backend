@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "50a30fec-cc66-49dd-8ea0-5666f3655f81",
+		"name": "zen-movie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "puzan",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "sakya",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "puzansakya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"puzansakya\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "movie",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTUyNTY4NDIsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJmcmFua2xpbnAiLCJsYXN0X25hbWUiOiJJc2FpYWgiLCJhdmF0YXIiOiIvYXZhdGFyXzE1OTUwODI2MjQ3MTdfdGVzdC5wbmciLCJjcmVhdGVkX2F0IjoiMjAyMC0wNy0xOCAwNzo0MzozNCIsIm1vZGlmaWVkX2F0IjpudWxsLCJkZWxldGVkX2F0IjpudWxsLCJzdGF0dXMiOjF9LCJpYXQiOjE1OTUyNTMyNDJ9.wNL4E2XFn14waTybOhXTVDwNj-3s8m0PbsLDWPUARkU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/movies?page=1&limit=10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTU4NDg0MTcsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMjcgMTA6MTM6MzQiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1ODQ0ODE3fQ.eNcGuWF7jDErxLIAJnm2rJzzKNSnA8lJeUGNigkcWI4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test title",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test description",
+									"type": "text"
+								},
+								{
+									"key": "poster",
+									"type": "file",
+									"src": "/C:/Users/ashraff/Desktop/virtual class/Virtual class.png"
+								},
+								{
+									"key": "duration",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "release_date",
+									"value": "2012-10-29",
+									"type": "text"
+								},
+								{
+									"key": "budget",
+									"value": "100",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTUwNjE5ODEsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMTggMDc6NDM6MzQiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1MDU4MzgxfQ.9goxsndfVXNHIGrR0mClpd8OdGKu2214UmRSpgATMXI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test title",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test description updated",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "release_date",
+									"value": "2012-10-29",
+									"type": "text"
+								},
+								{
+									"key": "budget",
+									"value": "100",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/movies/1?title=test title&description=test description&duration=100&release_date=2012-10-29&budget=100",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"1"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "test title"
+								},
+								{
+									"key": "description",
+									"value": "test description"
+								},
+								{
+									"key": "duration",
+									"value": "100"
+								},
+								{
+									"key": "release_date",
+									"value": "2012-10-29"
+								},
+								{
+									"key": "budget",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTU3OTEzNDMsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMjMgMDE6MDY6MjgiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1Nzg3NzQzfQ.KQE6i4Y8_8f38HRm2PM1HCWQJ_RZiFs_BW8bv_WcmN4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/movies/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTUwNjE5ODEsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMTggMDc6NDM6MzQiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1MDU4MzgxfQ.9goxsndfVXNHIGrR0mClpd8OdGKu2214UmRSpgATMXI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/movies/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "watchlist",
+			"item": [
+				{
+					"name": "Get my watchlist",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTUwODM5MTYsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJmcmFua2xpbnAiLCJsYXN0X25hbWUiOiJJc2FpYWgiLCJhdmF0YXIiOiIvYXZhdGFyXzE1OTUwNjE2NjQ3MDBfdGVzdC5wbmciLCJjcmVhdGVkX2F0IjoiMjAyMC0wNy0xOCAwNzo0MzozNCIsIm1vZGlmaWVkX2F0IjpudWxsLCJkZWxldGVkX2F0IjpudWxsLCJzdGF0dXMiOjF9LCJpYXQiOjE1OTUwODAzMTZ9.X2hOByjlZJSHueOM3nQ9a0_cfL2FuqUN9zzYEIOd3Bg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/watchlists",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"watchlists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to watchlist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTUyNTY4NDIsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJmcmFua2xpbnAiLCJsYXN0X25hbWUiOiJJc2FpYWgiLCJhdmF0YXIiOiIvYXZhdGFyXzE1OTUwODI2MjQ3MTdfdGVzdC5wbmciLCJjcmVhdGVkX2F0IjoiMjAyMC0wNy0xOCAwNzo0MzozNCIsIm1vZGlmaWVkX2F0IjpudWxsLCJkZWxldGVkX2F0IjpudWxsLCJzdGF0dXMiOjF9LCJpYXQiOjE1OTUyNTMyNDJ9.wNL4E2XFn14waTybOhXTVDwNj-3s8m0PbsLDWPUARkU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movie_id\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/watchlists",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"watchlists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove from watchlist",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTU3OTEzNDMsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMjMgMDE6MDY6MjgiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1Nzg3NzQzfQ.KQE6i4Y8_8f38HRm2PM1HCWQJ_RZiFs_BW8bv_WcmN4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movie_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/watchlists/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"watchlists",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "review",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTUyNTY4NDIsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJmcmFua2xpbnAiLCJsYXN0X25hbWUiOiJJc2FpYWgiLCJhdmF0YXIiOiIvYXZhdGFyXzE1OTUwODI2MjQ3MTdfdGVzdC5wbmciLCJjcmVhdGVkX2F0IjoiMjAyMC0wNy0xOCAwNzo0MzozNCIsIm1vZGlmaWVkX2F0IjpudWxsLCJkZWxldGVkX2F0IjpudWxsLCJzdGF0dXMiOjF9LCJpYXQiOjE1OTUyNTMyNDJ9.wNL4E2XFn14waTybOhXTVDwNj-3s8m0PbsLDWPUARkU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/reviews/2?page=1&limit=10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"2"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTU4NDg0MTcsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMjcgMTA6MTM6MzQiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1ODQ0ODE3fQ.eNcGuWF7jDErxLIAJnm2rJzzKNSnA8lJeUGNigkcWI4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movie_id\": 2,\r\n    \"review\": \"this is best movie\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/reviews",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTU4NDg0MTcsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMjcgMTA6MTM6MzQiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1ODQ0ODE3fQ.eNcGuWF7jDErxLIAJnm2rJzzKNSnA8lJeUGNigkcWI4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"review\": \"this is best movie udpdated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/reviews/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTUwNjE5ODEsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJwdXphbiIsImxhc3RfbmFtZSI6InNha3lhIiwiYXZhdGFyIjoiIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMTggMDc6NDM6MzQiLCJtb2RpZmllZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwic3RhdHVzIjoxfSwiaWF0IjoxNTk1MDU4MzgxfQ.9goxsndfVXNHIGrR0mClpd8OdGKu2214UmRSpgATMXI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/reviews/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
