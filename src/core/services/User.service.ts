@@ -1,5 +1,5 @@
-import User from '../model/User';
-import Utilities from "../utilities/utli";
+import User from '../../packages/user/domain/User';
+import Utilities from "../../utilities/utli";
 
 export class UserService {
 

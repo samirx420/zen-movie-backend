@@ -1,5 +1,5 @@
 import BaseService from './Base.service';
-import Review from '../model/Review';
+import Review from '../../packages/review/domain/Review';
 
 export class WatchlistService {
 

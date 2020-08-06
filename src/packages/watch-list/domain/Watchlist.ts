@@ -1,4 +1,4 @@
-import Base from './Base';
+import Base from '../../../core/model/Base';
 
 export default class Watchlist extends Base {
 

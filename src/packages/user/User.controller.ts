@@ -1,14 +1,19 @@
 import { Router, NextFunction, Response, Request } from "express";
 
-// SERVICES
-import UserService from '../services/User.service';
-
 // MODELS
-import User from "../model/User";
+import User from "./domain/User";
 
 // UTILITIES
-import Utilities from "../utilities/utli";
-import { upload } from "../utilities/fileupload";
+import Utilities from "../../utilities/utli";
+import { upload } from "../../utilities/fileupload";
+
+// USE-CASES
+import { 
+    login
+    , register
+    , my_profile
+    , my_profile_update 
+} from "./use-case";
 
 export class UserController {
 
@@ -24,7 +29,7 @@ export class UserController {
     public async login(req: Request, res: Response, next: NextFunction) {
         try {
             let user: User = req.body;
-            let response = await UserService.login(user)
+            let response = await login(user)
 
             return res.status(200).json(response);
         } catch (error) {
@@ -38,7 +43,7 @@ export class UserController {
             let avatar     = (req.files['avatar'] != undefined) ? req.files['avatar'][0].filename : '' as string;
             let user: User = {...req.body, avatar: avatar};
             
-            let response = await UserService.register(user);
+            let response = await register(user);
 
             return res.status(201).json(response);
 
@@ -52,7 +57,7 @@ export class UserController {
         try {
 
             let user_decoded: User = req['user'].data;
-            let response = await UserService.my_profile(user_decoded);
+            let response = await my_profile(user_decoded);
 
             return res.status(200).json(response);
 
@@ -70,7 +75,7 @@ export class UserController {
 
             let user_decoded: User = req['user'].data;
 
-            let response = await UserService.my_profile_update(user, user_decoded)
+            let response = await my_profile_update(user, user_decoded)
 
             return res.status(201).json({ message: 'user updated' });
 

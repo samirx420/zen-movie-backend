@@ -1,15 +1,20 @@
 import { Router, NextFunction, Response, Request } from "express";
 
 // MODELS
-import Movie from "../model/Movie";
-import User from "../model/User";
-
-// SERVICES
-import MovieService from "../services/Movie.service";
+import User from "../user/domain/User";
 
 // UTILITIES
-import Utilities from "../utilities/utli";
-import { upload } from "../utilities/fileupload";
+import Utilities from "../../utilities/utli";
+import { upload } from "../../utilities/fileupload";
+
+// USE-CASES
+import { 
+    list_movie
+    , movie_detail
+    , create_movie
+    , update_movie
+    , delete_movie
+ } from "./use-case";
 
 export class MovieController {
 
@@ -23,7 +28,7 @@ export class MovieController {
     public async get_all(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             let user_decoded: User = req['user']?.data;
-            let response = await MovieService.get_all(user_decoded, +req.query.page, +req.query.limit, req.query.search as string);
+            let response = await list_movie(user_decoded, +req.query.page, +req.query.limit, req.query.search as string);
 
             return res.status(200).json(response);
 
@@ -38,7 +43,7 @@ export class MovieController {
         try {
             let id       = req.params.id;
             let user_decoded: User = req['user']?.data;
-            let response = await MovieService.get_by_id(user_decoded, id);
+            let response = await movie_detail(user_decoded, id);
 
             return res.status(200).json(response);
         } catch (error) {
@@ -53,7 +58,7 @@ export class MovieController {
             let user_decoded: User = req['user'].data;
             let poster_path        = (req.files['poster'] != undefined) ? req.files['poster'][0].filename : '' as string;
                 payload            = {...payload, created_by:user_decoded.id, poster_path: poster_path};
-            let response           = await MovieService.create(payload);
+            let response           = await create_movie(payload);
 
             return res.status(201).json(response);
         } catch (error) {
@@ -68,7 +73,7 @@ export class MovieController {
             let payload     = req.body;
             let poster_path = (req.files['poster'] != undefined) ? req.files['poster'][0].filename : '' as string;
                 payload     = {...payload, poster_path: poster_path};
-            let response    = await MovieService.update(id, payload);
+            let response    = await update_movie(id, payload);
 
             return res.status(204).json(response);
         } catch (error) {
@@ -80,7 +85,7 @@ export class MovieController {
     public async delete(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             let id              = req.params.id;
-            let response = await MovieService.delete(id);
+            let response = await delete_movie(id);
 
             return res.status(204).json(response);
         } catch (error) {

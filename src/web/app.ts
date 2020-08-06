@@ -22,10 +22,10 @@ import Utilities from "./../utilities/utli";
 // import { UserObject } from './validators/User.validator';
 
 // // Controllers
-import userController       from '../controllers/User.controller';
-import movieController      from '../controllers/Movie.controller';
-import watchlistController  from '../controllers/Watchlist.controller';
-import reviewController     from '../controllers/Review.controller';
+import userController       from '../packages/user/User.controller';
+import movieController      from '../packages/movie/Movie.controller';
+import watchlistController  from '../packages/watch-list/Watchlist.controller';
+import reviewController     from '../packages/review/Review.controller';
 
 // Swagger
 import swaggerJSDoc = require('swagger-jsdoc');

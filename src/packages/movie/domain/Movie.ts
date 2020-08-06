@@ -1,4 +1,4 @@
-import Base from './Base';
+import Base from '../../../core/model/Base';
 
 export default class Movie extends Base {
 
@@ -9,6 +9,7 @@ export default class Movie extends Base {
     budget         : number;
     release_date   : Date;
     is_in_watchlist: boolean;
+    has_booked     : boolean;
 
     static get tableName() {
         return 'movies';

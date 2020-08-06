@@ -1,6 +1,6 @@
 import BaseService from './Base.service';
-import Movie from '../model/Movie';
-import Watchlist from '../model/Watchlist';
+import Movie from '../../packages/movie/domain/Movie';
+import Watchlist from '../../packages/watch-list/domain/Watchlist';
 
 export class WatchlistService {
 

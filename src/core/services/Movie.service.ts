@@ -1,5 +1,5 @@
 import BaseService from './Base.service';
-import Movie from '../model/Movie';
+import Movie from '../../packages/movie/domain/Movie';
 import { raw } from 'objection';
 
 export class MovieService {
