@@ -26,6 +26,7 @@ import userController       from '../packages/user/User.controller';
 import movieController      from '../packages/movie/Movie.controller';
 import watchlistController  from '../packages/watch-list/Watchlist.controller';
 import reviewController     from '../packages/review/Review.controller';
+import bookingController    from '../packages/booking/Booking.controller';
 
 // Swagger
 import swaggerJSDoc = require('swagger-jsdoc');
@@ -135,7 +136,8 @@ class App {
         this.express.use('/api/v1/users'        , userController);
         this.express.use('/api/v1/movies'       , movieController);
         this.express.use('/api/v1/watchlists'   , watchlistController);
-        this.express.use('/api/v1/reviews'       , reviewController);
+        this.express.use('/api/v1/reviews'      , reviewController);
+        this.express.use('/api/v1/bookings'     , bookingController);
 
 
         // /**
