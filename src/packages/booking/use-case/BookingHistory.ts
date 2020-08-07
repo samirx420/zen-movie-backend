@@ -18,8 +18,8 @@ export const booking_history = async (userId: number, page: number, size: number
                 .on('movies.id', '=', 'bookings.movie_id')
         })
         .where({
-            'bookings.created_by'  : userId,
-            'watchlists.is_deleted': false
+            'bookings.created_by': userId,
+            'bookings.is_deleted': false
         })
         .page(offset, limit);
 

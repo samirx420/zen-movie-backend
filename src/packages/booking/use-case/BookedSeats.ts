@@ -9,8 +9,9 @@ export const booked_seats = async (payload) => {
             , 'bookings.seat_column'
         )
         .where({
-            movie_id    : payload.movie_id,
-            booking_date: payload.booking_date
+              movie_id    : payload.movie_id
+            , booking_date: payload.booking_date
+            , show_time   : payload.show_time
         })
 
 
