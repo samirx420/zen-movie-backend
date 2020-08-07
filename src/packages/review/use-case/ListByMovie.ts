@@ -7,6 +7,7 @@ export const list_review_by_movie = async (movieId: number, page: number, size: 
     let { offset, limit } = BaseService._normaliza_page(page, size);
     let query             = Review
         .query()
+        .eager('user')
         .where({
             'reviews.movie_id'  : movieId,
             'reviews.is_deleted': false
