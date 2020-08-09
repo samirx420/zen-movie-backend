@@ -27,6 +27,7 @@ function loginUser(auth) {
 
 describe('Movie', () => {
 
+
     it('it should GET all movies', async () => {
 
         let movies = await chai.request(app)

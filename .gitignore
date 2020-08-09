@@ -2,4 +2,5 @@
 /dist
 /build
 /yarn.lock
-/upload
+/uploads
+/pzt.pz
