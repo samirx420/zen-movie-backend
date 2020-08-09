@@ -25,7 +25,7 @@ function loginUser(auth) {
     };
 }
 
-describe('Watch list', () => {
+describe.skip('Watch list', () => {
 
     it('it should GET all watchlist movies for a user', async () => {
 

@@ -20,12 +20,13 @@ function loginUser(auth) {
                 password: 'password'
             });
 
+            auth.user
         auth.jwt = login.body.jwt;
 
     };
 }
 
-describe('Movie', () => {
+describe.skip('Movie', () => {
 
 
     it('it should GET all movies', async () => {
@@ -45,7 +46,7 @@ describe('Movie', () => {
             .set('Authorization', 'Bearer ' + auth.jwt)
             .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
             .field('title', 'test_title')
-            .field('description', 'test_description');
+            .field('description', 'test_description')
 
         expect(movie.status).to.equal(201);
         expect(movie).not.to.be.empty;

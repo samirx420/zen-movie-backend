@@ -25,7 +25,7 @@ function loginUser(auth) {
     };
 }
 
-describe('User', () => {
+describe.skip('User', () => {
 
     it('it should register user', async () => {
 
@@ -42,6 +42,20 @@ describe('User', () => {
         expect(user_created).not.to.be.empty;
     }).timeout(5000);
     
+    it('it should login user', async() => {
+        let data = {
+            username: "testuser",
+            password: "password",
+        };
+        let user_login = await chai.request(app)
+            .post('/api/v1/users/login')
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
+            .send(data);
+
+            expect(user_login.status).to.equal(200);
+            expect(user_login.body).not.to.be.empty;
+    });
+
     it('it should login user', async() => {
         let data = {
             username: "testuser",
