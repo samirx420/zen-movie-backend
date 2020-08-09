@@ -15,12 +15,12 @@ function loginUser(auth) {
         let login = await chai.request(app)
             .post('/api/v1/users/login')
             .send({
-                username: 'puzansakya',
+                username: 'testuser',
                 password: 'password'
             });
 
-        auth.jwt = login.body.jwt;
         auth.user = login.body;
+        auth.jwt = login.body.jwt;
 
     };
 }
@@ -38,18 +38,22 @@ describe('Watch list', () => {
     }).timeout(5000);
 
     it('it should POST a movie to watch list', async () => {
+
         let movie = await chai.request(app)
             .post('/api/v1/movies')
             .set('Authorization', 'Bearer ' + auth.jwt)
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
             .field('title', 'test_title')
-            .field('description', 'test_desriptin');
+            .field('description', 'test_description');
 
+        console.log(movie.body);
         let watch_list_data = {
             movie_id: movie.body.id,
             user_id: auth.user.id,
         }
         let watch_list_create = await chai.request(app)
             .post('/api/v1/watchlists')
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
             .set('Authorization', 'Bearer ' + auth.jwt)
             .send(watch_list_data);
 
@@ -58,14 +62,13 @@ describe('Watch list', () => {
     }).timeout(5000);
 
     it('it should DELETE a movie from watch list for provided id', async () => {
-        let data = {
-            title: 'test_title',
-            description: 'test_desriptin',
-        }
+      
         let create_movie = await chai.request(app)
             .post('/api/v1/movies')
             .set('Authorization', 'Bearer ' + auth.jwt)
-            .send(data);
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
+            .field('title', 'test_title')
+            .field('description', 'test_description');
 
         let watch_list_data = {
             movie_id: create_movie.body.id,
@@ -74,10 +77,12 @@ describe('Watch list', () => {
         let create_watch_list = await chai.request(app)
             .post('/api/v1/watchlists')
             .set('Authorization', 'Bearer ' + auth.jwt)
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
             .send(watch_list_data);
 
         let delete_watchlist_by_movie_id = await chai.request(app)
             .delete('/api/v1/watchlists/' + create_movie.body.id)
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
             .set('Authorization', 'Bearer ' + auth.jwt)
 
 
