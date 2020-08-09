@@ -60,6 +60,8 @@ export class MovieController {
                 payload            = {...payload, created_by:user_decoded.id, poster_path: poster_path};
             let response           = await create_movie(payload);
 
+            delete payload.poster;
+
             return res.status(201).json(response);
         } catch (error) {
             console.log(error.message);
@@ -73,8 +75,12 @@ export class MovieController {
             let payload     = req.body;
             let poster_path = (req.files['poster'] != undefined) ? req.files['poster'][0].filename : '' as string;
                 payload     = {...payload, poster_path: poster_path};
+        
+
             let response    = await update_movie(id, payload);
 
+            delete payload.poster;
+            
             return res.status(204).json(response);
         } catch (error) {
             console.log(error);
