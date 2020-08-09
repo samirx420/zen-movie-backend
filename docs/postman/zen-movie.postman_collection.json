@@ -449,7 +449,7 @@
 			"name": "review",
 			"item": [
 				{
-					"name": "list",
+					"name": "Get booking history",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -582,6 +582,109 @@
 								"v1",
 								"reviews",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "bookings",
+			"item": [
+				{
+					"name": "Get my booking history",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY4MDUyMTIsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJmcmFua2xpbnAiLCJsYXN0X25hbWUiOiJJc2FpYWgiLCJhdmF0YXIiOiIvYXZhdGFyXzE1OTYzNDYxMDEyMDRfdGVzdC5wbmciLCJjcmVhdGVkX2F0IjoiMjAyMC0wNy0yNyAxMDoxMzozNCIsIm1vZGlmaWVkX2F0IjpudWxsLCJkZWxldGVkX2F0IjpudWxsLCJzdGF0dXMiOjF9LCJpYXQiOjE1OTY4MDE2MTJ9.X9eHDtH3FSgDA7EKU-Es5K6kl85llu6FsHWGpBkv5kI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/bookings",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "book a show",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY4MDUyMTIsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJmcmFua2xpbnAiLCJsYXN0X25hbWUiOiJJc2FpYWgiLCJhdmF0YXIiOiIvYXZhdGFyXzE1OTYzNDYxMDEyMDRfdGVzdC5wbmciLCJjcmVhdGVkX2F0IjoiMjAyMC0wNy0yNyAxMDoxMzozNCIsIm1vZGlmaWVkX2F0IjpudWxsLCJkZWxldGVkX2F0IjpudWxsLCJzdGF0dXMiOjF9LCJpYXQiOjE1OTY4MDE2MTJ9.X9eHDtH3FSgDA7EKU-Es5K6kl85llu6FsHWGpBkv5kI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movie_id\": 2,\r\n    \"seat_row\": 2,\r\n    \"seat_column\": 2,\r\n    \"show_time\": \"9:00\",\r\n    \"booking_date\": \"2020-08-08\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/bookings",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get booked seats for give movie and date and show time",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTY4MDUyMTIsImRhdGEiOnsiaWQiOjEsInVzZXJuYW1lIjoicHV6YW5zYWt5YSIsImZpcnN0X25hbWUiOiJmcmFua2xpbnAiLCJsYXN0X25hbWUiOiJJc2FpYWgiLCJhdmF0YXIiOiIvYXZhdGFyXzE1OTYzNDYxMDEyMDRfdGVzdC5wbmciLCJjcmVhdGVkX2F0IjoiMjAyMC0wNy0yNyAxMDoxMzozNCIsIm1vZGlmaWVkX2F0IjpudWxsLCJkZWxldGVkX2F0IjpudWxsLCJzdGF0dXMiOjF9LCJpYXQiOjE1OTY4MDE2MTJ9.X9eHDtH3FSgDA7EKU-Es5K6kl85llu6FsHWGpBkv5kI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movie_id\": 2,\r\n    \"booking_date\": \"2020-08-08\",\r\n    \"show_time\": \"9:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/bookings/booked-seats",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"bookings",
+								"booked-seats"
 							]
 						}
 					},

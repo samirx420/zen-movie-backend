@@ -21,7 +21,7 @@ module.exports = {
       }
     },
     useNullAsDefault: true,
-    debug           : true,
+    debug           : false,
     // migrations: {
     //   directory: './migrations',
     // },
