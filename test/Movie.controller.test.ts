@@ -16,7 +16,7 @@ function loginUser(auth) {
         let login = await chai.request(app)
             .post('/api/v1/users/login')
             .send({
-                username: 'puzansakya',
+                username: 'testuser',
                 password: 'password'
             });
 
@@ -44,7 +44,8 @@ describe('Movie', () => {
             .set('Authorization', 'Bearer ' + auth.jwt)
             .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
             .field('title', 'test_title')
-            .field('description', 'test_description');
+            .field('description', 'test_description')
+            .field('poster', './test/test.png');
 
         expect(movie.status).to.equal(201);
         expect(movie).not.to.be.empty;

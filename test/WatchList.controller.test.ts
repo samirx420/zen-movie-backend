@@ -15,7 +15,7 @@ function loginUser(auth) {
         let login = await chai.request(app)
             .post('/api/v1/users/login')
             .send({
-                username: 'puzansakya',
+                username: 'testuser',
                 password: 'password'
             });
 
