@@ -25,7 +25,7 @@ function loginUser(auth) {
     };
 }
 
-describe.skip('User', () => {
+describe('User', () => {
 
     it('it should register user', async () => {
 
