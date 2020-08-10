@@ -54,7 +54,7 @@ describe('Booking', () => {
 
     }).timeout(5000);
 
-    it('it should POST new booking with seat row and column for a movie by a selected user', async () => {
+    it('it should POST to obtain booked seat row and column for a movie', async () => {
 
         let movie_create = await chai.request(app)
             .post('/api/v1/movies')
