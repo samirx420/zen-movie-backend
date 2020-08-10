@@ -54,6 +54,36 @@ describe('Booking', () => {
 
     }).timeout(5000);
 
+    it('it should POST new booking with seat row and column for a movie by a selected user', async () => {
+
+        let movie_create = await chai.request(app)
+            .post('/api/v1/movies')
+            .set('Authorization', 'Bearer ' + auth.jwt)
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
+            .field('title', 'test_title')
+            .field('description', 'test_description');
+
+            let payload  = {
+                "movie_id": movie_create.body.id,
+                "booking_date": "2020-08-08",
+                "show_time": "9:00",
+                "seat_row": 2,
+                "seat_column": 2,
+
+            }
+                
+
+        let booking_create = await chai.request(app)
+        .post('/api/v1/bookings')
+        .set('Authorization', 'Bearer ' + auth.jwt)
+        .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
+        .send(payload)
+            
+    expect(booking_create.status).to.equal(201);
+    expect(booking_create).not.to.be.empty;
+
+    }).timeout(5000);
+
     it('it should GET all bookings for a selected movie', async () => {
 
         let movie_create = await chai.request(app)
