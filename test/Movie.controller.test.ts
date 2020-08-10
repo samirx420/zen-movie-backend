@@ -26,7 +26,7 @@ function loginUser(auth) {
     };
 }
 
-describe.skip('Movie', () => {
+describe('Movie', () => {
 
 
     it('it should GET all movies', async () => {

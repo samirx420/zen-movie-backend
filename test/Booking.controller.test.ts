@@ -37,9 +37,11 @@ describe('Booking', () => {
 
             let payload  = {
                 "movie_id": movie_create.body.id,
-                
-                
+                "booking_date": "2020-08-08",
+                "show_time": "9:00"
+
             }
+                
 
         let booking_create = await chai.request(app)
         .post('/api/v1/bookings')
@@ -63,18 +65,23 @@ describe('Booking', () => {
 
             let payload  = {
                 "movie_id": movie_create.body.id,
+                "booking_date": "2020-08-08",
+                "show_time": "9:00",
+                
                 
             }
+            let booking_create = await chai.request(app)
+            .post('/api/v1/bookings')
+            .set('Authorization', 'Bearer ' + auth.jwt)
+            .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
+            .send(payload)
+                
 
-        let booking_create = await chai.request(app)
-        .post('/api/v1/reviews')
-        .set('Authorization', 'Bearer ' + auth.jwt)
-        .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG')
-        .send(payload)
+            
 
         
         let booking_fetched = await chai.request(app)
-        .get('/api/v1/bookings/' + movie_create.body.id)
+        .get('/api/v1/bookings/')
         .set('Authorization', 'Bearer ' + auth.jwt)
         .set('api_key', '$2y$10$DZuUfJ27NZ82CKGSZvTHyuCckTkla/58K28D.oXoYwHEbcS8IC4VG');
 
